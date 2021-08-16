@@ -6,7 +6,11 @@ import React, { Component } from "react";
 import propTypes from "prop-types";
 
 class Book extends Component {
-  // static proptypes: {};
+  static prototypes = {
+    coverUrl: propTypes.string.isRequired,
+    title: propTypes.string.isRequired,
+    authors: propTypes.array.isRequired,
+  };
 
   render() {
     return (
@@ -15,8 +19,8 @@ class Book extends Component {
           <div
             className="book-cover"
             style={{
-              width: this.props.coverWidth,
-              height: this.props.coverHeight,
+              width: 128,
+              height: 190,
               backgroundImage: `url(${this.props.coverUrl})`,
             }}
           />
@@ -33,7 +37,11 @@ class Book extends Component {
           </div>
         </div>
         <div className="book-title">{this.props.title}</div>
-        <div className="book-authors">{this.props.author}</div>
+        <div className="book-authors">
+          {this.props.authors.map((author) => (
+            <div key={this.props.authors.indexOf(author)}>{author}</div>
+          ))}
+        </div>
       </div>
     );
   }
