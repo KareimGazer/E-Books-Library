@@ -5,25 +5,13 @@ import "./App.css";
 import SearchButton from "./SearchButton";
 import Header from "./Header";
 import SearchPage from "./SearchPage";
+import { Route } from "react-router-dom";
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false,
     shelves: [],
     categories: ["Currently Reading", "Want to Read", "Read"],
     allBooks: [],
-  };
-
-  showSearchPage = () => {
-    this.setState(() => ({
-      showSearchPage: true,
-    }));
   };
 
   // filters books into appropriate shelves
@@ -87,6 +75,7 @@ class BooksApp extends React.Component {
     this.setUpShelves();
   };
 
+  // add a book from search page to the main list of books
   addBook = (id, shelf) => {
     BooksAPI.get(id).then((book) => {
       this.setState((currentState) => {
@@ -102,33 +91,30 @@ class BooksApp extends React.Component {
     });
   };
 
-  returnHome = () => {
-    this.setState({
-      showSearchPage: false,
-    });
-  };
-
-  /* 
-    the search button should lead to /search
-    
-   */
   render() {
     console.log("render of App");
     console.log(this.state.shelves);
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchPage returnHome={this.returnHome} addBook={this.addBook} />
-        ) : (
-          <div className="list-books">
-            <Header />
-            <Library
-              shelves={this.state.shelves}
-              updateBook={this.updateBook}
-            />
-            <SearchButton onClick={this.showSearchPage} />
-          </div>
-        )}
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <div className="list-books">
+              <Header />
+              <Library
+                shelves={this.state.shelves}
+                updateBook={this.updateBook}
+              />
+              <SearchButton />
+            </div>
+          )}
+        />
+        <Route
+          exact
+          path="/search"
+          render={() => <SearchPage addBook={this.addBook} />}
+        />
       </div>
     );
   }
