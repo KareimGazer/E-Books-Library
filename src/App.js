@@ -25,39 +25,73 @@ class BooksApp extends React.Component {
     }));
   };
 
-  componentDidMount() {
+  // filters books into appropriate shelves
+  setUpShelves = () => {
+    this.setState((currentState) => ({
+      shelves: [
+        {
+          id: 0,
+          shelf: "Currently Reading",
+          booksList: currentState.allBooks.filter(
+            (book) => book.shelf === "currentlyReading"
+          ),
+        },
+        {
+          id: 1,
+          shelf: "Want to Read",
+          booksList: currentState.allBooks.filter(
+            (book) => book.shelf === "wantToRead"
+          ),
+        },
+        {
+          id: 2,
+          shelf: "Read",
+          booksList: currentState.allBooks.filter(
+            (book) => book.shelf === "read"
+          ),
+        },
+      ],
+    }));
+  };
+
+  //loads books from udacity API
+  getNewBooks = () => {
     BooksAPI.getAll().then((books) => {
+      console.log("got new books");
       console.log(books);
       this.setState({
         allBooks: books,
-        shelves: [
-          {
-            id: 0,
-            shelf: "Currently Reading",
-            booksList: books.filter(
-              (book) => book.shelf === "currentlyReading"
-            ),
-          },
-          {
-            id: 1,
-            shelf: "Want to Read",
-            booksList: books.filter((book) => book.shelf === "wantToRead"),
-          },
-          {
-            id: 2,
-            shelf: "Read",
-            booksList: books.filter((book) => book.shelf === "read"),
-          },
-        ],
       });
+      this.setUpShelves();
     });
+  };
+
+  componentDidMount() {
+    this.getNewBooks();
   }
+
+  // updates the book info (state.allBooks) in the App component
+  updateBook = (id, shelf) => {
+    this.setState((currentState) => {
+      var bList = currentState.allBooks;
+      for (var i = 0; i < bList.length; i++) {
+        if (bList[i].id === id) {
+          bList[i].shelf = shelf;
+        }
+      }
+      console.log("show me List");
+      console.log(bList);
+      return { allBooks: bList };
+    });
+    this.setUpShelves();
+  };
+
   /* 
     the search button should lead to /search
     
    */
   render() {
-    console.log("look here");
+    console.log("render of App");
     console.log(this.state.shelves);
     return (
       <div className="app">
@@ -89,7 +123,10 @@ class BooksApp extends React.Component {
         ) : (
           <div className="list-books">
             <Header />
-            <Library shelves={this.state.shelves} />
+            <Library
+              shelves={this.state.shelves}
+              updateBook={this.updateBook}
+            />
             <SearchButton onClick={this.showSearchPage} />
           </div>
         )}

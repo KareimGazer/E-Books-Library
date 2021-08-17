@@ -17,6 +17,7 @@ class Library extends Component {
               key={shelf.id}
               shelf={shelf.shelf}
               booksList={shelf.booksList}
+              updateBook={this.props.updateBook}
             />
           ))}
         </div>

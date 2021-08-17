@@ -4,6 +4,7 @@
 
 import React, { Component } from "react";
 import propTypes from "prop-types";
+import * as BooksAPI from "./BooksAPI";
 
 class Book extends Component {
   static prototypes = {
@@ -25,10 +26,14 @@ class Book extends Component {
             }}
           />
           <div className="book-shelf-changer">
-            <select>
-              <option value="move" disabled>
-                Move to...
-              </option>
+            <select
+              onChange={(event) => {
+                BooksAPI.update({ id: this.props.id }, event.target.value);
+                this.props.updateBook(this.props.id, event.target.value);
+                console.log("I want rerendering");
+              }}
+            >
+              <option value="move">Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
