@@ -16,7 +16,11 @@ class Shelf extends Component {
             {this.props.booksList.map((book) => (
               <li key={book.id}>
                 <Book
-                  coverUrl={book.imageLinks.smallThumbnail}
+                  coverUrl={
+                    book.imageLinks != null
+                      ? book.imageLinks.smallThumbnail
+                      : ""
+                  }
                   title={book.title}
                   authors={book.authors}
                   id={book.id}
