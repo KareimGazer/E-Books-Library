@@ -11,6 +11,8 @@ class Book extends Component {
     coverUrl: propTypes.string.isRequired,
     title: propTypes.string.isRequired,
     authors: propTypes.array.isRequired,
+    id: propTypes.string.isRequired,
+    updateBook: propTypes.func.isRequired,
   };
 
   render() {
