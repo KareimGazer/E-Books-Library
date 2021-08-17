@@ -2,7 +2,6 @@
 This is a Books Library site.
 The user has three shelves to put the books in. The user can also can add new books by pressing the `+` button down the screen.
 This project is from the final assessment project for Udacity's React Fundamentals course.
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
 
 The starte template is from [reactnd-project-myreads-starter](https://github.com/udacity/reactnd-project-myreads-starter).
 
