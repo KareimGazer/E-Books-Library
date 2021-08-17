@@ -91,11 +91,13 @@ class BooksApp extends React.Component {
     BooksAPI.get(id).then((book) => {
       this.setState((currentState) => {
         let booksList = currentState.allBooks;
+        book.shelf = shelf;
         booksList.push(book);
         console.log("added ");
         console.log(book);
         return { allBooks: booksList };
       });
+      console.log("setting shelves up");
       this.setUpShelves();
     });
   };

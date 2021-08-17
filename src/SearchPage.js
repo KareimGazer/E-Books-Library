@@ -18,13 +18,26 @@ class SearchPage extends Component {
     if (bookName !== "") {
       console.log("promise");
       console.log(BooksAPI.search(bookName));
-      BooksAPI.search(bookName).then((books) => {
-        console.log("search Books: " + bookName + " query:" + this.state.query);
-        console.log(books);
-        this.setState({
-          booksList: books,
+      BooksAPI.search(bookName)
+        .then((books) => {
+          console.log(
+            "search Books: " + bookName + " query:" + this.state.query
+          );
+          console.log(books);
+          if (Array.isArray(books)) {
+            this.setState({
+              booksList: books,
+            });
+          } else {
+            console.log("API Error");
+            this.setState({
+              booksList: [],
+            });
+          }
+        })
+        .catch(() => {
+          console.log("rejected");
         });
-      });
     } else {
       console.log("empty");
       this.setState({
@@ -69,10 +82,15 @@ class SearchPage extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
+            {console.log("Seacrching these books", this.state.booksList)}
             {this.state.booksList.map((book) => (
               <li key={book.id}>
                 <Book
-                  coverUrl={book.imageLinks.smallThumbnail}
+                  coverUrl={
+                    book.imageLinks != null
+                      ? book.imageLinks.smallThumbnail
+                      : ""
+                  }
                   title={book.title}
                   authors={book.authors}
                   id={book.id}
