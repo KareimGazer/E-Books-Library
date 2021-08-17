@@ -3,7 +3,6 @@
 */
 
 import React, { Component } from "react";
-import propTypes from "prop-types";
 
 class Header extends Component {
   render() {

@@ -7,6 +7,13 @@ import Book from "./Book";
 import propTypes from "prop-types";
 
 class Shelf extends Component {
+  static prototypes = {
+    key: propTypes.string.isRequired,
+    shelf: propTypes.string.isRequired,
+    booksList: propTypes.array.isRequired,
+    updateBook: propTypes.func.isRequired,
+  };
+
   render() {
     return (
       <div className="bookshelf">

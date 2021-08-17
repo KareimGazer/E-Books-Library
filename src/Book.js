@@ -1,7 +1,6 @@
 /*
   The Component responsible for displaying the book info
 */
-
 import React, { Component } from "react";
 import propTypes from "prop-types";
 import * as BooksAPI from "./BooksAPI";

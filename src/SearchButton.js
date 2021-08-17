@@ -1,9 +1,7 @@
 /*
   This component is responsible for moving to search page
 */
-
 import React, { Component } from "react";
-import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 class SearchButton extends Component {

@@ -8,6 +8,11 @@ import Shelf from "./Shelf";
 import propTypes from "prop-types";
 
 class Library extends Component {
+  static prototypes = {
+    updateBook: propTypes.func.isRequired,
+    shelves: propTypes.array.isRequired,
+  };
+
   render() {
     return (
       <div className="list-books-content">
