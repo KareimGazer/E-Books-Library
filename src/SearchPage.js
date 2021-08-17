@@ -21,20 +21,13 @@ class SearchPage extends Component {
   //componentDidMount() {}
   searchBooks = (bookName) => {
     if (bookName !== "") {
-      console.log("promise");
-      console.log(BooksAPI.search(bookName));
       BooksAPI.search(bookName)
         .then((books) => {
-          console.log(
-            "search Books: " + bookName + " query:" + this.state.query
-          );
-          console.log(books);
           if (Array.isArray(books)) {
             this.setState({
               booksList: books,
             });
           } else {
-            console.log("API Error");
             this.setState({
               booksList: [],
             });
@@ -44,7 +37,6 @@ class SearchPage extends Component {
           console.log("rejected");
         });
     } else {
-      console.log("empty");
       this.setState({
         booksList: [],
       });
@@ -82,7 +74,6 @@ class SearchPage extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {console.log("Seacrching these books", this.state.booksList)}
             {this.state.booksList.map((book) => (
               <li key={book.id}>
                 <Book

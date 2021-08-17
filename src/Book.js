@@ -31,7 +31,6 @@ class Book extends Component {
               onChange={(event) => {
                 BooksAPI.update({ id: this.props.id }, event.target.value);
                 this.props.updateBook(this.props.id, event.target.value);
-                console.log("I want rerendering");
               }}
             >
               <option value="move">Move to...</option>

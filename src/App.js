@@ -46,8 +46,6 @@ class BooksApp extends React.Component {
   //loads books from udacity API
   getNewBooks = () => {
     BooksAPI.getAll().then((books) => {
-      console.log("got new books");
-      console.log(books.length);
       this.setState({
         allBooks: books,
       });
@@ -68,8 +66,6 @@ class BooksApp extends React.Component {
           bList[i].shelf = shelf;
         }
       }
-      console.log("show me List");
-      console.log(bList);
       return { allBooks: bList };
     });
     this.setUpShelves();
@@ -82,18 +78,13 @@ class BooksApp extends React.Component {
         let booksList = currentState.allBooks;
         book.shelf = shelf;
         booksList.push(book);
-        console.log("added ");
-        console.log(book);
         return { allBooks: booksList };
       });
-      console.log("setting shelves up");
       this.setUpShelves();
     });
   };
 
   render() {
-    console.log("render of App");
-    console.log(this.state.shelves);
     return (
       <div className="app">
         <Route
