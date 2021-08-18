@@ -28,12 +28,18 @@ class Book extends Component {
           />
           <div className="book-shelf-changer">
             <select
+              value={this.props.shelf}
               onChange={(event) => {
-                BooksAPI.update({ id: this.props.id }, event.target.value);
+                BooksAPI.update(
+                  { id: this.props.id, shelf: this.props.shelf },
+                  event.target.value
+                );
                 this.props.updateBook(this.props.id, event.target.value);
               }}
             >
-              <option value="move">Move to...</option>
+              <option value="move" disabled>
+                Move to...
+              </option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>

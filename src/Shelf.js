@@ -31,6 +31,7 @@ class Shelf extends Component {
                   title={book.title}
                   authors={book.authors}
                   id={book.id}
+                  shelf={book.shelf}
                   updateBook={this.props.updateBook}
                 />
               </li>
