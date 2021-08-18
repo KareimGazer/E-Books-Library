@@ -43,6 +43,13 @@ class BooksApp extends React.Component {
     }));
   };
 
+  // returns a map of books id and their shelf to help show that in the search page
+  getBooksMap = () => {
+    let booksDictionary = {};
+    this.state.allBooks.map((book) => (booksDictionary[book.id] = book.shelf));
+    return booksDictionary;
+  };
+
   //loads books from udacity API
   getNewBooks = () => {
     BooksAPI.getAll().then((books) => {
@@ -104,7 +111,9 @@ class BooksApp extends React.Component {
         <Route
           exact
           path="/search"
-          render={() => <SearchPage addBook={this.addBook} />}
+          render={() => (
+            <SearchPage addBook={this.addBook} getBooksMap={this.getBooksMap} />
+          )}
         />
       </div>
     );

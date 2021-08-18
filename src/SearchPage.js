@@ -16,6 +16,7 @@ class SearchPage extends Component {
   state = {
     booksList: [],
     query: "",
+    booksDictionary: {},
   };
 
   //componentDidMount() {}
@@ -41,6 +42,8 @@ class SearchPage extends Component {
         booksList: [],
       });
     }
+    const booksDict = this.props.getBooksMap();
+    this.setState({ booksDictionary: booksDict });
   };
 
   render() {
@@ -78,7 +81,11 @@ class SearchPage extends Component {
                   title={book.title}
                   authors={book.authors}
                   id={book.id}
-                  shelf={bool.shelf}
+                  shelf={
+                    this.state.booksDictionary[book.id]
+                      ? this.state.booksDictionary[book.id]
+                      : book.shelf
+                  }
                   updateBook={this.props.addBook}
                 />
               </li>
