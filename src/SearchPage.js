@@ -84,7 +84,7 @@ class SearchPage extends Component {
                   shelf={
                     this.state.booksDictionary[book.id]
                       ? this.state.booksDictionary[book.id]
-                      : book.shelf
+                      : "none"
                   }
                   updateBook={this.props.addBook}
                 />
