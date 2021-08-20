@@ -1,4 +1,4 @@
-# MyReads Project
+# E-Books Library Project
 This is a Books Library site.
 The user has three shelves to put the books in. The user can also can add new books by pressing the `+` button down the screen.
 This project is from the final assessment project for Udacity's React Fundamentals course.
