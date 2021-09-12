@@ -11,6 +11,7 @@ To get started:
 * install all project dependencies with `yarn install`
 * start the development server with `yarn start`
 
+[Yarn installation](https://classic.yarnpkg.com/en/docs/install)
 
 ## Backend Server
 
