@@ -6,12 +6,20 @@ This project is from the final assessment project for Udacity's React Fundamenta
 The starte template is from [reactnd-project-myreads-starter](https://github.com/udacity/reactnd-project-myreads-starter).
 
 ## Getting Started
+### On Your Local Machine:
 To get started:
 
 * install all project dependencies with `yarn install`
 * start the development server with `yarn start`
 
 [Yarn installation](https://classic.yarnpkg.com/en/docs/install)
+
+### Using Docker
+1. in the root of the project run:
+`docker build -t your-image-name .` to build the image.
+2. `docker run -d -p 3000:3000 --name your-container-name your-image-name` to run the container in the background
+3. got to `http://localhost:3000/`
+4. Enjoy using the app!
 
 ## Backend Server
 
