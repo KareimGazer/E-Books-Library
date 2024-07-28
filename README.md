@@ -18,7 +18,7 @@ To get started:
 1. in the root of the project run:
 `docker build -t your-image-name .` to build the image.
 2. `docker run -d -p 3000:3000 --name your-container-name your-image-name` to run the container in the background
-3. got to `http://localhost:3000/`
+3. go to `http://localhost:3000/`
 4. Enjoy using the app!
 
 ## Backend API
